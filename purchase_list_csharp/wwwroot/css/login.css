@@ -1,16 +1,37 @@
 ﻿
 
 div.login-container {
-    background-color: red;
-    width: 500px;
-    height: 200px;
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+    text-align: center;
 }
+
+
 
 div.login-entry {
-    width: 100%;
-
+    width: calc(100% - 10px);
+    margin-top: 20px;
+    margin-left: 10px;
+    text-align: start;
 }
 
-.login-entry button {
-    width: 100%;
+.login-entry input {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.login-container button {
+    width: calc(100% - 40px);
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px;
 }
