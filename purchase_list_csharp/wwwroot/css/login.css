@@ -1,0 +1,16 @@
+﻿
+
+div.login-container {
+    background-color: red;
+    width: 500px;
+    height: 200px;
+}
+
+div.login-entry {
+    width: 100%;
+
+}
+
+.login-entry button {
+    width: 100%;
+}
