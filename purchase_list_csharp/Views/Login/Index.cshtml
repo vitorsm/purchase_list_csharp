@@ -6,26 +6,33 @@
 
 @using (Html.BeginForm())
 {
-    <div class="login-container">
+    <div style="width: 100%; text-align: center">
+        <div class="login-container">
 
-        <img src="~/images/user-solid.svg" alt="user" class="img-responsive" width="100px" />
-        <div class="login-entry">
-            <p>Login</p>
-            <input />
-        </div>
-        <div class="login-entry">
-            <p>Password</p>
-            <input type="password" />
-        </div>
+            <div style="width: 100%; text-align: center">
+                <img src="~/images/user-solid.svg" alt="user" width="100px" style="margin-top: -50px" />
+            </div>
 
-        <button id="login-button">
-            Entrar
-        </button>
+            <form method="post">
+                <div class="login-entry">
+                    <p>Login</p>
+                    <input name="Login" />
+                </div>
+                <div class="login-entry">
+                    <p>Password</p>
+                    <input type="password" name="Password" />
+                </div>
 
-        <div>
-            <a>Esqueci minha senhaa</a>
+                <input type="submit" id="login-button" value="Entrar" asp-action="Authenticate" />
+            </form>
+            
+
+            <div>
+                <a>Esqueci minha senhaa</a>
+            </div>
         </div>
     </div>
+
 }
 
 
