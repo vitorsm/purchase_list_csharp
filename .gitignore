@@ -3,5 +3,5 @@
 /obj
 /.vs
 /purchase_list_csharp/bin
-purchase_list_csharp/obj
-purchase_list_csharp/.vs
+/purchase_list_csharp/obj
+/purchase_list_csharp/.vs
