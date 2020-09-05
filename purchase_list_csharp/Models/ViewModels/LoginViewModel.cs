@@ -17,5 +17,7 @@ namespace purchase_list_csharp.Models.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }

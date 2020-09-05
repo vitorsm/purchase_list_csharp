@@ -1,7 +1,12 @@
 ﻿
+@model purchase_list_csharp.Models.ViewModels.LoginErrorViewModel
+
+
 @{
     ViewData["Title"] = "Login";
 }
+
+
 
 
 @using (Html.BeginForm())
@@ -23,16 +28,27 @@
                     <input type="password" name="Password" />
                 </div>
 
+                <input style="display: none" name="ReturnUrl" value="@ViewContext.HttpContext.Request.Query["ReturnUrl"]"/>
+
                 <input type="submit" id="login-button" value="Entrar" asp-action="Authenticate" />
             </form>
-            
 
             <div>
                 <a>Esqueci minha senhaa</a>
             </div>
+
+            @{
+                if (Model != null)
+                {
+                    <div class="errors">
+                        <p>@Model.Message</p>
+                    </div>
+                }
+            }
         </div>
     </div>
 
 }
+
 
 

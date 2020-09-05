@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +31,7 @@ namespace purchase_list_csharp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new LoginErrorViewModel(null, null));
         }
 
         public async Task<IActionResult> Authenticate() {
@@ -49,8 +50,31 @@ namespace purchase_list_csharp.Controllers
             {
                 await SetAuthenticatedUser(authenticatedUser.Login, false);
 
-                return this.RedirectToPage("Home");
+                string returnUrl = this.LoginModel.ReturnUrl;
+
+                string controller = "Home";
+                string action = "Index";
+
+                if (returnUrl != null && returnUrl.StartsWith("/"))
+                {
+                    string[] parts = returnUrl.Substring(1).Split('/');
+                    controller = parts[0];
+
+                    if (parts.Length >= 2)
+                    {
+                        action = parts[1];
+                    }
+                }
+
+                return this.RedirectToActionPermanent(action, controller);
             }
+
+            return View("Index", new LoginErrorViewModel("Usuário ou senha inválidos", null));
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await this.UnsetAuthenticatedUser();
 
             return View("Index");
         }
@@ -65,6 +89,12 @@ namespace purchase_list_csharp.Controllers
             HttpContext authenticationManager = Request.HttpContext;
 
             await authenticationManager.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimPrincipal, new AuthenticationProperties() { IsPersistent = isPersistent });
+        }
+
+        private async Task UnsetAuthenticatedUser()
+        {
+            HttpContext authenticationManager = Request.HttpContext;
+            await authenticationManager.SignOutAsync();
         }
     }
 }

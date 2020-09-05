@@ -29,7 +29,11 @@ namespace purchase_list_csharp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(o =>
+            {
+                o.LoginPath = "/Login";
+                o.LogoutPath = "/Login/Logout";
+            });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -59,9 +63,6 @@ namespace purchase_list_csharp
             services.AddDbContext<PurchaseContext>(options => options.UseMySql(connection));
             services.AddDbContext<PurchaseListContext>(options => options.UseMySql(connection));
             services.AddDbContext<UserContext>(options => options.UseMySql(connection));
-
-            
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
