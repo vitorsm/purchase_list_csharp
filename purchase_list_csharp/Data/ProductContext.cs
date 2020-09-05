@@ -6,7 +6,7 @@ namespace purchase_list_bg.Data
 {
     public class ProductContext : DbContext
     {
-        public ProductContext(DbContextOptions<UserContext> options) : base(options)
+        public ProductContext(DbContextOptions<ProductContext> options) : base(options)
         {
         }
 
