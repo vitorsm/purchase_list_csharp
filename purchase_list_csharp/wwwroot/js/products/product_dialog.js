@@ -32,6 +32,10 @@ $(document).ready(function () {
         setFieldsValidationOnChange();
     });
 
+    $(".product-item-edit-button").click(() => {
+        let rowElement = $(this).parent().parent();
+    });
+
     $("#product-dialog-save-button-id").click(() => {
         showLoading(true);
 
@@ -55,7 +59,9 @@ $(document).ready(function () {
         $(".modal-title").html("Create a product");
     }
 
-    function initEditMode() {
+    function initEditMode(productRowElement) {
+        let productId = productRowElement.children().eq(0).html();
+
         fields.forEach(field => {
             $("div[field-name='" + field.fieldName + "']").css("display", "block");
         });
@@ -101,13 +107,18 @@ $(document).ready(function () {
         };
     }
 
+    function instantiateObjectFromProductRowElement(rowElement) {
+
+    }
+
     function handleProductAdded(result) {
         console.log("handleProductAdded was called", result)
         let item = $("#product-list-item").children().first().children().first().clone();
 
-        item.children().eq(0).html(result.name);
-        item.children().eq(1).html(result.createdAt);
-        item.children().eq(2).html(result.modifiedAt);
+        item.children().eq(0).html(result.id);
+        item.children().eq(1).html(result.name);
+        item.children().eq(2).html(moment(result.createdAt).format("DD/MM/YYYY"));
+        item.children().eq(3).html(moment(result.modifiedAt).format("DD/MM/YYYY"));
 
         $("#products-list-table").append(item);
 

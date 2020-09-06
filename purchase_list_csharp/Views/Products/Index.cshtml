@@ -4,11 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h2>Produtos</h2>
 
 <button id="create-product-button-id" data-toggle="modal" data-target="#product-crud-modal-id">Abrir modal</button>
 
@@ -31,6 +27,9 @@
     <tbody id="products-list-table">
 @foreach (var item in Model) {
         <tr>
+            <td style="display: none">
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -41,8 +40,8 @@
                 @Html.DisplayFor(modelItem => item.ModifiedAt)
             </td>
             <td>
-                <img src="~/images/edit-regular.svg" alt="edit" width="24" class="table-action" /> |
-                <img src="~/images/trash-alt-regular.svg" alt="edit" width="24" class="table-action" /> 
+                <img src="~/images/edit-regular.svg" alt="edit" width="24" class="table-action product-item-edit-button" /> |
+                <img src="~/images/trash-alt-regular.svg" alt="edit" width="24" class="table-action" />
             </td>
         </tr>
 }
@@ -51,14 +50,16 @@
 
 <table id="product-list-item" style="display: none">
     <tr>
-        <td>
+        <td style="display: none">
         </td>
         <td>
         </td>
         <td>
         </td>
         <td>
-            <img src="~/images/edit-regular.svg" alt="edit" width="24" class="table-action" /> |
+        </td>
+        <td>
+            <img src="~/images/edit-regular.svg" alt="edit" width="24" class="table-action product-item-edit-button" /> |
             <img src="~/images/trash-alt-regular.svg" alt="edit" width="24" class="table-action" />
         </td>
     </tr>
