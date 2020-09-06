@@ -15,6 +15,7 @@ namespace purchase_list_bg.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().ToTable("product");
+            modelBuilder.Entity<User>().ToTable("user");
         }
     }
 }

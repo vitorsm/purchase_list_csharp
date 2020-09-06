@@ -9,6 +9,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<button id="create-product-button-id" data-toggle="modal" data-target="#product-crud-modal-id">Abrir modal</button>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -37,11 +41,12 @@
                 @Html.DisplayFor(modelItem => item.ModifiedAt)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <img src="~/images/edit-regular.svg" alt="edit" width="24" class="table-action" /> |
+                <img src="~/images/trash-alt-regular.svg" alt="edit" width="24" class="table-action" /> 
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<partial name="_ProductDialog.cshtml" />

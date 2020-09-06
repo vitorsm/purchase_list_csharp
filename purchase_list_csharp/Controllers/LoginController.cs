@@ -84,6 +84,7 @@ namespace purchase_list_csharp.Controllers
             List<Claim> claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.Name, login));
+
             ClaimsIdentity claimIdentities = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             ClaimsPrincipal claimPrincipal = new ClaimsPrincipal(claimIdentities);
             HttpContext authenticationManager = Request.HttpContext;

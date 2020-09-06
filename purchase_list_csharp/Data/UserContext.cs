@@ -18,6 +18,11 @@ namespace purchase_list_bg.Data
             modelBuilder.Entity<User>().ToTable("user");
         }
 
+        public User FindByLogin(string login)
+        {
+            return this.Users.FirstOrDefault(u => u.Login == login);
+        }
+
         public User AuthenticateUser(string login, string password)
         {
             return this.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
