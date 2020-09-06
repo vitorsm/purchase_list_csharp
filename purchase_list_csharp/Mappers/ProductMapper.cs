@@ -39,7 +39,7 @@ namespace purchase_list_csharp.Mappers
         {
             return new Product
             {
-                Id = obj.Id,
+                Id = obj.Id.Value,
                 Name = obj.Name,
                 ModifiedAt = obj.ModifiedAt,
                 CreatedAt = obj.CreatedAt

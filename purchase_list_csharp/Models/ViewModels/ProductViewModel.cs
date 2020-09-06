@@ -8,12 +8,12 @@ namespace purchase_list_csharp.Models.ViewModels
 {
     public class ProductViewModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set; }
-        public int CreatedById { get; set; }
-        public string CreatedByName { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? ModifiedAt { get; set; }
+        public int? CreatedById { get; set; }
+        public String CreatedByName { get; set; }
     }
 }

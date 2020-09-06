@@ -28,7 +28,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="products-list-table">
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -48,5 +48,21 @@
 }
     </tbody>
 </table>
+
+<table id="product-list-item" style="display: none">
+    <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+            <img src="~/images/edit-regular.svg" alt="edit" width="24" class="table-action" /> |
+            <img src="~/images/trash-alt-regular.svg" alt="edit" width="24" class="table-action" />
+        </td>
+    </tr>
+</table>
+
 
 <partial name="_ProductDialog.cshtml" />

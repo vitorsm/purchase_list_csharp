@@ -33,12 +33,15 @@ $(document).ready(function () {
     });
 
     $("#product-dialog-save-button-id").click(() => {
+        showLoading(true);
+
         $.ajax({
             type: "POST",
             url: "Products/Create",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify({ "name": $("div[field-name='Name'] > input").val() })
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(instantiateObject()),
+            success: handleProductAdded
         });
     });
 
@@ -81,6 +84,43 @@ $(document).ready(function () {
             errorMessageElement.html("");
         } else {
             errorMessageElement.html(defaultErrorValueMessage);
+        }
+    }
+
+    function instantiateObject() {
+        let strId = $("div[field-name='Name'] > input").val();
+        let id = null;
+
+        if (strId && isNaN(strId)) {
+            id = parseInt(strId);
+        }
+
+        return {
+            id: id,
+            name: $("div[field-name='Name'] > input").val()
+        };
+    }
+
+    function handleProductAdded(result) {
+        console.log("handleProductAdded was called", result)
+        let item = $("#product-list-item").children().first().children().first().clone();
+
+        item.children().eq(0).html(result.name);
+        item.children().eq(1).html(result.createdAt);
+        item.children().eq(2).html(result.modifiedAt);
+
+        $("#products-list-table").append(item);
+
+        $('#product-crud-modal-id').modal('toggle');
+
+        showLoading(false);
+    }
+
+    function showLoading(show) {
+        if (show || show === undefined) {
+            $("#product-dialog-loading").css("display", "block");
+        } else {
+            $("#product-dialog-loading").css("display", "none");
         }
     }
 
